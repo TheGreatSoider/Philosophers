@@ -76,8 +76,17 @@ int	main(int ac, char **av)
 	return (0);
 }
 
-	/* av[1] = no. of philo,*/
-	/* av[2] = time to die,*/
-	/* av[3] = time to eat,*/
-	/* av[4] = time to sleep,*/
-	/* av[5] = no. of times to eat*/
+// int	main(int ac, char **av)
+// {
+// 	t_data	data;
+
+// 	if (arg_are_correct(ac, av))
+// 	{
+// 		init(&data, ac, av);
+// 		if (data.no_of_philo == 1)
+// 			return (case_one(&data));
+// 		thread_init(&data);
+// 		ft_exit(&data);
+// 	}
+// 	return (0);
+// }

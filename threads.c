@@ -6,7 +6,7 @@
 /*   By: cocheong <cocheong@student.42kl.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 18:51:41 by cocheong          #+#    #+#             */
-/*   Updated: 2023/10/11 21:24:28 by cocheong         ###   ########.fr       */
+/*   Updated: 2023/10/13 17:48:57 by cocheong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ void	*monitor(void *data_p)
 	t_philo	*philo;
 
 	philo = (t_philo *) data_p;
-	pthread_mutex_lock(&philo->data->write);
-	printf("data val: %d", philo->data->dead);
-	pthread_mutex_unlock(&philo->data->write);
 	while (philo->data->dead == 0)
 	{
 		pthread_mutex_lock(&philo->lock);
@@ -57,6 +54,8 @@ void	*routine(void *philo_p)
 	t_philo	*philo;
 
 	philo = (t_philo *) philo_p;
+	if (philo->id % 2 == 0)
+		gotosleep(1);
 	philo->dead = philo->data->time_of_death + get_time();
 	if (pthread_create(&philo->thread_id, NULL, &supervisor, (void *)philo))
 		return ((void *)1);
@@ -77,11 +76,6 @@ int	thread_init(t_data *data)
 
 	i = 0;
 	data->start_time = get_time();
-	if (data->no_of_makans > 0)
-	{
-		if (pthread_create(&t0, NULL, &monitor, &data->philosophers[0]))
-			return (error(TH_ERR, data));
-	}
 	while (i < data->no_of_philo)
 	{
 		if (pthread_create(&data->thread_id[i], NULL,
@@ -89,6 +83,11 @@ int	thread_init(t_data *data)
 			return (error(TH_ERR, data));
 		gotosleep(1);
 		i++;
+	}
+	if (data->no_of_makans > 0)
+	{
+		if (pthread_create(&t0, NULL, &monitor, &data->philosophers[0]))
+			return (error(TH_ERR, data));
 	}
 	i = -1;
 	while (++i < data->no_of_philo)

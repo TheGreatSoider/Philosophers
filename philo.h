@@ -64,10 +64,10 @@ typedef struct s_data
 	int				no_of_makans;
 	int				finished;
 	int				dead;
-	int				time_of_death;
-	int				makan_time;
-	int				sleep_time;
-	int				start_time;
+	uint64_t		time_of_death;
+	uint64_t		makan_time;
+	uint64_t		sleep_time;
+	uint64_t		start_time;
 	pthread_t		*thread_id;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	lock;

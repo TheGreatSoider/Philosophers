@@ -61,7 +61,7 @@ int	ft_strcmp(char *s1, char *s2)
 
 int	gotosleep(useconds_t time)
 {
-	u_int64_t	start;
+	uint64_t	start;
 
 	start = get_time();
 	while ((get_time() - start) < time)

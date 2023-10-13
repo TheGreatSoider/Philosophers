@@ -68,9 +68,9 @@ int	arg_are_correct(int ac, char **av)
 	{
 		if (no_arguments_outside_limits(av))
 			return (1);
-		printf("Arguments above int limits\n");
+		printf("Arguments reaches int limits\n");
 		return (0);
 	}
-	printf("Invalid no. of arguments\n");
+	printf("Invalid no. of arguments or contains negative value\n");
 	return (0);
 }

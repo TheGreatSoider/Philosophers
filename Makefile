@@ -44,8 +44,8 @@ $(NAME): $(OBJECTS_PREFIXED)
 	@echo [$(NAME)]
 
 clean:
-	@rm -f $(OBJECTS)
-	@echo Removed [$(OBJECTS)]
+	@rm -f $(OBJECTS_PREFIXED)
+	@echo Removed [$(OBJECTS_PREFIXED)]
 
 fclean: clean
 	@rm -f $(NAME)

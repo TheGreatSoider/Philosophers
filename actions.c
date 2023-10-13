@@ -22,17 +22,17 @@ int	get_time(void)
 
 void	print_message(char *str, t_philo *philo)
 {
-	uint64_t	t;
+	int	t;
 
 	pthread_mutex_lock(&philo->data->write);
 	t = get_time() - philo->data->start_time;
 	if (ft_strcmp(DIED, str) == 0 && philo->data->dead == 0)
 	{
-		printf("%llu %d %s\n", t, philo->id, str);
+		printf("%d %d %s\n", t, philo->id, str);
 		philo->data->dead = 1;
 	}
 	if (!philo->data->dead)
-		printf("%llu %d %s\n", t, philo->id, str);
+		printf("%d %d %s\n", t, philo->id, str);
 	pthread_mutex_unlock(&philo->data->write);
 }
 
